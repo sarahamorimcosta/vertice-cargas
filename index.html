@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vértice Cargas · Transporte rodoviário de cargas</title>
+  <meta name="description" content="Transporte rodoviário de cargas lotação, fracionada, dedicada e retirada de contêiner no porto. Sul, Sudeste e Centro-Oeste. Cotação pelo WhatsApp.">
+  <meta property="og:title" content="Vértice Cargas">
+  <meta property="og:description" content="Do porto à sua doca, sem perder a carga de vista.">
+  <meta name="theme-color" content="#12202B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }</script>
+</head>
+<body>
+
+<canvas id="mundo" aria-hidden="true"></canvas>
+<div class="ceu-reserva" aria-hidden="true"></div>
+
+<div class="cortina" aria-hidden="true">
+  <svg class="cortina-marca" viewBox="0 0 64 64"><path d="M8 50 32 12 56 50" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="miter"/><path d="M20 50 32 31 44 50" fill="none" stroke="currentColor" stroke-width="5"/></svg>
+  <span>Montando a operação…</span>
+</div>
+
+<header class="topo">
+  <a href="#inicio" class="marca" aria-label="Vértice Cargas, início">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 50 32 12 56 50" fill="none" stroke="currentColor" stroke-width="5"/><path d="M20 50 32 31 44 50" fill="none" stroke="currentColor" stroke-width="5"/></svg>
+    <span>Vértice<em>Cargas</em></span>
+  </a>
+  <nav class="menu" aria-label="Seções">
+    <a href="#operacao">Operação</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#estrutura">Estrutura</a>
+    <a href="#rotas">Rotas</a>
+    <a href="#embarcador">Embarcadores</a>
+    <a href="#cotacao" class="menu-cta">Cotação</a>
+  </nav>
+</header>
+
+<!-- Painel de rastreio: acompanha a viagem enquanto a página rola -->
+<aside class="rastreio" aria-hidden="true">
+  <div class="rastreio-linha"><span>VC·0427</span><span class="rastreio-status" data-status>AGUARDANDO COLETA</span></div>
+  <div class="rastreio-km"><b data-km>0000</b><small>km rodados</small></div>
+  <ol class="rastreio-paradas">
+    <li data-parada="0">Coleta</li><li data-parada="1">Porto</li><li data-parada="2">Rodovia</li><li data-parada="3">CD</li><li data-parada="4">Entrega</li>
+  </ol>
+  <div class="rastreio-barra"><i data-barra></i></div>
+</aside>
+
+<main>
+
+  <section id="inicio" class="cena cena--abertura" data-cena="0">
+    <div class="painel painel--abertura revelar">
+      <p class="selo">Transporte rodoviário · Sul · Sudeste · Centro-Oeste</p>
+      <h1>Do porto à sua doca, <em>sem perder a carga de vista.</em></h1>
+      <p class="apoio">Lotação, fracionada, frota dedicada e retirada de contêiner. Quem pede a cotação acompanha cada quilômetro da viagem.</p>
+      <div class="acoes">
+        <a href="#cotacao" class="botao">Pedir cotação</a>
+        <a href="#operacao" class="botao botao--linha">Ver a operação</a>
+      </div>
+    </div>
+    <div class="role" aria-hidden="true"><span></span>role para viajar</div>
+  </section>
+
+  <section id="operacao" class="cena" data-cena="1">
+    <div class="painel revelar">
+      <span class="parada">Parada 01 · Porto</span>
+      <h2>Quem pede a cotação fala com quem <em>programa a viagem.</em></h2>
+      <p>A Vértice Cargas tira carga do porto e de fábricas e entrega em centros de distribuição, atacadistas e indústrias do Sul, do Sudeste e do Centro-Oeste.</p>
+      <p>Não tem central de atendimento nem número de protocolo. Você sabe em qual caminhão a carga está, quem dirige e quando ela encosta na sua doca.</p>
+    </div>
+  </section>
+
+  <section id="servicos" class="cena cena--larga" data-cena="2">
+    <div class="painel painel--manifesto revelar">
+      <span class="parada">Parada 02 · Rodovia</span>
+      <h2>O que sai do pátio <em>todos os dias</em></h2>
+      <ul class="servicos">
+        <li><span class="cod">LT</span><div><h3>Carga lotação</h3><p>Um caminhão só para a sua carga, da doca de origem à doca de destino, sem transbordo.</p></div></li>
+        <li><span class="cod">FR</span><div><h3>Carga fracionada</h3><p>Para volumes que não enchem um caminhão. Você paga pelo espaço que ocupa, e a carga segue consolidada na mesma rota.</p></div></li>
+        <li><span class="cod">DD</span><div><h3>Frota dedicada</h3><p>Caminhões e motoristas reservados para a sua operação, com rotina de coletas combinada com o seu time.</p></div></li>
+        <li><span class="cod">CT</span><div><h3>Retirada de contêiner</h3><p>Coleta no terminal portuário e entrega no seu armazém, com devolução do contêiner vazio no prazo do armador.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="estrutura" class="cena cena--direita" data-cena="3">
+    <div class="painel revelar">
+      <span class="parada">Parada 03 · Centro de distribuição</span>
+      <h2>Estrutura para <em>carga de gente grande</em></h2>
+      <dl class="ficha">
+        <div><dt>Frota</dt><dd>Carretas baú e sider, trucks e VUCs para entrega urbana</dd></div>
+        <div><dt>Armazém</dt><dd>Cross-docking com docas niveladas para carga e descarga</dd></div>
+        <div><dt>Equipe</dt><dd>Programação, monitoramento e motoristas próprios e agregados</dd></div>
+        <div><dt>Documentação</dt><dd>RNTRC ativo, CT-e e MDF-e emitidos em cada viagem</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="seguranca" class="cena" data-cena="4">
+    <div class="painel painel--noite revelar">
+      <span class="parada">Parada 04 · Monitoramento</span>
+      <h2>A carga aparece no mapa <em>do começo ao fim</em></h2>
+      <ul class="checks">
+        <li>Rastreamento por satélite em todos os caminhões da frota</li>
+        <li>Motoristas cadastrados em gerenciadora de risco antes de cada viagem</li>
+        <li>Seguro de carga RCTR-C e RCF-DC</li>
+        <li>Aviso no seu WhatsApp na coleta, nas paradas e na entrega</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="rotas" class="cena cena--direita" data-cena="5">
+    <div class="painel revelar">
+      <span class="parada">Parada 05 · Malha</span>
+      <h2>Onde a gente <em>roda</em></h2>
+      <div class="malha">
+        <div><b>SUL</b><span>PR</span><span>SC</span><span>RS</span></div>
+        <div><b>SUDESTE</b><span>SP</span><span>RJ</span><span>MG</span><span>ES</span></div>
+        <div><b>CENTRO-OESTE</b><span>GO</span><span>MS</span><span>MT</span><span>DF</span></div>
+      </div>
+      <p class="nota">Precisa de uma rota fora dessa malha? Pergunte do mesmo jeito: cada viagem é avaliada caso a caso.</p>
+    </div>
+  </section>
+
+  <section id="embarcador" class="cena" data-cena="6">
+    <div class="painel painel--noite revelar">
+      <span class="parada">Área do embarcador</span>
+      <h2>Cadastrar a Vértice como fornecedor <em>leva um e-mail.</em></h2>
+      <p>O kit de cadastro já está pronto para o setor de compras:</p>
+      <ul class="kit">
+        <li>Cartão CNPJ</li><li>Inscrição estadual</li><li>RNTRC (ANTT)</li><li>Apólices de seguro</li><li>Certidões negativas</li><li>Dados bancários</li>
+      </ul>
+      <a data-whats="Olá! Quero receber o kit de cadastro de fornecedor da Vértice Cargas." target="_blank" rel="noopener" class="botao">Pedir o kit de cadastro</a>
+    </div>
+  </section>
+
+  <section id="cotacao" class="cena cena--larga" data-cena="7">
+    <form class="manifesto revelar" novalidate>
+      <div class="manifesto-topo">
+        <div><span class="parada">Manifesto de cotação</span><h2>Para onde vai <em>a sua carga?</em></h2></div>
+        <span class="carimbo" aria-hidden="true">Cotação<br>sem compromisso</span>
+      </div>
+      <div class="manifesto-grade">
+        <label class="c2"><span>01 · Empresa</span><input name="empresa" autocomplete="organization" required></label>
+        <label class="c2"><span>02 · Seu nome</span><input name="nome" autocomplete="name" required></label>
+        <label class="c2"><span>03 · Origem (cidade/UF)</span><input name="origem" placeholder="Ex.: Santos/SP" required></label>
+        <label class="c2"><span>04 · Destino (cidade/UF)</span><input name="destino" placeholder="Ex.: Goiânia/GO" required></label>
+        <label class="c2"><span>05 · Tipo de carga</span>
+          <select name="tipo"><option>Lotação</option><option>Fracionada</option><option>Frota dedicada</option><option>Retirada de contêiner</option></select></label>
+        <label><span>06 · Peso aprox. (kg)</span><input name="peso" inputmode="numeric"></label>
+        <label><span>07 · Volumes/paletes</span><input name="volumes" inputmode="numeric"></label>
+        <label class="c2"><span>08 · Mercadoria</span><input name="mercadoria" placeholder="Ex.: eletrodomésticos paletizados"></label>
+        <label class="c2"><span>09 · Coleta desejada</span><input name="coleta" type="date"></label>
+        <label class="c4"><span>10 · Observações</span><textarea name="obs" rows="2" placeholder="Horário de doca, agendamento, carga frágil…"></textarea></label>
+      </div>
+      <div class="manifesto-fim">
+        <p class="manifesto-aviso" role="status" aria-live="polite">O manifesto abre preenchido no seu WhatsApp. É só enviar.</p>
+        <button type="submit" class="botao">Enviar pelo WhatsApp</button>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="rodape-painel">
+    <a href="#inicio" class="marca">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 50 32 12 56 50" fill="none" stroke="currentColor" stroke-width="5"/><path d="M20 50 32 31 44 50" fill="none" stroke="currentColor" stroke-width="5"/></svg>
+      <span>Vértice<em>Cargas</em></span>
+    </a>
+    <span>Transporte rodoviário de cargas · Sul, Sudeste e Centro-Oeste</span>
+    <span>© <span data-ano></span> Vértice Cargas · marca de demonstração</span>
+  </div>
+</footer>
+
+<a class="whats" data-whats target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3Zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4a10.4 10.4 0 0 1-1.6-5.6C5.5 9.8 10.2 5.2 16 5.2s10.5 4.6 10.5 10.4S21.8 26.1 16 26.1Zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg>
+</a>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script type="module" src="mundo.js"></script>
+</body>
+</html>
